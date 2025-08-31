@@ -9,7 +9,7 @@ public class ConnectionFactory {
         Connection con = null;
         try{
             Class.forName("oracle.jdbc.driver.OracleDriver");
-            String url = "jdbc:oracle:thin:@localhost:1521:XE";
+            String url = "jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL";
             final String USER = "user_name";
             final String PASS = "user_password";
             con = DriverManager.getConnection(url,USER,PASS);
@@ -23,5 +23,16 @@ public class ConnectionFactory {
             System.out.println("Erro: "+ e.getMessage());
         }
         return con;
+    }
+
+    public static void fecharConexao(Connection con){
+        try{
+            con.close();
+            System.out.println("Conexão fechada.");
+        }catch(SQLException e){
+            System.out.println("Erro de SQL! \n" + e.getMessage());
+        }catch(Exception e){
+            System.out.println("Erro: "+ e.getMessage());
+        }
     }
 }
